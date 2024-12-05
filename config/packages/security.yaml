@@ -1,0 +1,29 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        # Các firewall khác
+        login:
+            pattern: ^/login
+            stateless: true
+            anonymous: true
+
+        api:
+            pattern: ^/api/
+            stateless: true
+            guard:
+                authenticators:
+                    - Lexik\Bundle\JWTAuthenticationBundle\Security\Authenticator\JWTAuthenticator
+
+    access_control:
+        - { path: ^/api/admin, roles: ROLE_ADMIN }
+        - { path: ^/api/user, roles: ROLE_USER }
+        - { path: ^/api, roles: ROLE_USER }

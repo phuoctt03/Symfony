@@ -1,0 +1,12 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: 'Booking API Documentation'
+            description: 'API for managing users, bookings, flights, hotels, and more.'
+            version: '1.0.0'
+    areas:
+        default:
+            path_patterns: 
+                - ^/api
+    swagger_ui:
+        enable: true
